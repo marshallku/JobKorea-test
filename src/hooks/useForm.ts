@@ -51,7 +51,7 @@ export default function useForm(init: { [key: string]: FormItem }) {
         return {
             placeholder: name,
             required,
-            pattern: `${pattern}`.slice(1, -1),
+            pattern: pattern ? `${pattern}`.slice(1, -1) : undefined,
             minLength,
             maxLength,
         };

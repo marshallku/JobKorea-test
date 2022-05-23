@@ -1,3 +1,7 @@
+:root {
+    --main: #f60;
+}
+
 a,
 article,
 aside,
@@ -124,4 +128,10 @@ em {
     box-sizing: border-box;
     scrollbar-width: thin;
     -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body,
+#root {
+    min-height: 100vh;
 }

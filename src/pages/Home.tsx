@@ -1,13 +1,16 @@
+import { Link } from "react-router-dom";
+import "./Home.css";
+
 export default function Home() {
     return (
         <div className="home">
             <nav className="links">
-                <a className="links__link" href="/sign-up">
+                <Link className="links__link" to="/sign-up">
                     Sign Up
-                </a>
-                <a className="links__link" href="/list">
+                </Link>
+                <Link className="links__link" to="/list">
                     List
-                </a>
+                </Link>
             </nav>
         </div>
     );

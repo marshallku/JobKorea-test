@@ -98,6 +98,15 @@ export default function SignUp() {
         ],
         []
     );
+    const submittable = useMemo(
+        () =>
+            validate() &&
+            terms
+                .filter(({ essential }) => essential)
+                .every((x) => x.checked) &&
+            expirationDate !== "",
+        [data, terms, expirationDate]
+    );
 
     return (
         <div className="sign-up">
@@ -106,12 +115,17 @@ export default function SignUp() {
                 onSubmit={(event) => {
                     event.preventDefault();
 
-                    // FIXME: Should validate on input to set disabled attribute at submit button
-                    if (!validate()) {
-                        return;
-                    }
+                    const { id, password, name, email, phone } = data;
 
-                    console.log(data, terms, expirationDate);
+                    console.log({
+                        id: id.value,
+                        password: password.value,
+                        name: name.value,
+                        email: email.value,
+                        phone: phone.value,
+                        terms,
+                        expirationDate,
+                    });
                 }}
             >
                 {/*
@@ -156,7 +170,7 @@ export default function SignUp() {
                             setData("phone", sanitized);
                         }}
                     />
-                    <button>인증 번호 받기</button>
+                    <button type="button">인증 번호 받기</button>
                 </div>
                 <div>
                     <input
@@ -166,6 +180,7 @@ export default function SignUp() {
                         }}
                     />
                     <button
+                        type="button"
                         onClick={() => {
                             setData("verified", true);
                         }}
@@ -248,7 +263,9 @@ export default function SignUp() {
                         ))}
                     </div>
                 </section>
-                <button type="submit">가입하기</button>
+                <button disabled={!submittable} type="submit">
+                    가입하기
+                </button>
             </form>
         </div>
     );

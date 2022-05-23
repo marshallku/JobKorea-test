@@ -1,17 +1,66 @@
 import { useMemo, useState } from "react";
+import useForm from "../hooks/useForm";
 import fcls from "../utils/fcls";
 import "./SignUp.css";
 
 export default function SignUp() {
-    const [userData, setUserData] = useState({
-        id: "",
-        password: "",
-        name: "",
-        email: "",
-        phone: "",
-        verify: "",
-        verified: false,
-        expirationDate: "",
+    const { data, setData, validate, getAttributes } = useForm({
+        id: {
+            name: "아이디",
+            type: "text",
+            value: "",
+            required: true,
+            minLength: 6,
+            maxLength: 16,
+            pattern: /^[a-z0-9]+$/,
+        },
+        password: {
+            name: "비밀번호",
+            type: "password",
+            value: "",
+            required: true,
+            minLength: 8,
+            maxLength: 16,
+            pattern: /^[a-zA-Z0-9`~!@#$%^&*()-_+=\\|}{\]\["';:\/?.,>]+$/,
+        },
+        name: {
+            name: "이름",
+            type: "text",
+            value: "",
+            required: true,
+            minLength: 2,
+            maxLength: 12,
+            pattern: /^[가-힣a-zA-Z ]+$/,
+        },
+        email: {
+            name: "이메일",
+            type: "email",
+            value: "",
+            required: true,
+            pattern: /^\S+@\S+\.+\S{2,4}$/,
+        },
+        phone: {
+            name: "휴대폰 번호('-' 없이 숫자만)",
+            type: "tel",
+            value: "",
+            minLength: 10,
+            maxLength: 11,
+            pattern: /^[0-9]{10,11}$/,
+        },
+        verify: {
+            name: "인증번호",
+            type: "number",
+            value: "",
+            required: true,
+            minLength: 6,
+            maxLength: 6,
+        },
+        verified: {
+            name: "인증됨",
+            type: "hidden",
+            value: false,
+            expected: true,
+        },
     });
     const [terms, setTerms] = useState([
         {
@@ -40,6 +89,7 @@ export default function SignUp() {
             checked: false,
         },
     ]);
+    const [expirationDate, setExpirationDate] = useState("");
     const expirationDates = useMemo(
         () => [
             { id: "1y", name: "1년" },
@@ -56,7 +106,12 @@ export default function SignUp() {
                 onSubmit={(event) => {
                     event.preventDefault();
 
-                    console.log(userData, terms);
+                    // FIXME: Should validate on input to set disabled attribute at submit button
+                    if (!validate()) {
+                        return;
+                    }
+
+                    console.log(data, terms, expirationDate);
                 }}
             >
                 {/*
@@ -65,43 +120,32 @@ export default function SignUp() {
                  * I didn't bind values to input elements.
                  */}
                 <input
-                    type="text"
-                    name="id"
-                    placeholder="아이디"
+                    {...getAttributes("id")}
                     onChange={({ target }) => {
-                        setUserData((x) => ({ ...x, id: target.value }));
+                        setData("id", target.value);
                     }}
                 />
                 <input
-                    type="password"
-                    name="password"
-                    placeholder="비밀번호"
+                    {...getAttributes("password")}
                     onChange={({ target }) => {
-                        setUserData((x) => ({ ...x, password: target.value }));
+                        setData("password", target.value);
                     }}
                 />
                 <input
-                    type="text"
-                    name="name"
-                    placeholder="이름"
+                    {...getAttributes("name")}
                     onChange={({ target }) => {
-                        setUserData((x) => ({ ...x, name: target.value }));
+                        setData("name", target.value);
                     }}
                 />
                 <input
-                    type="email"
-                    name="email"
-                    placeholder="이메일"
+                    {...getAttributes("email")}
                     onChange={({ target }) => {
-                        setUserData((x) => ({ ...x, email: target.value }));
+                        setData("email", target.value);
                     }}
                 />
                 <div>
                     <input
-                        type="tel"
-                        name="phone"
-                        maxLength={11}
-                        placeholder="휴대폰 번호('-' 없이 숫자만)"
+                        {...getAttributes("phone")}
                         onChange={({ target }) => {
                             const sanitized = target.value.replace(
                                 /[^\d.]/g,
@@ -109,25 +153,25 @@ export default function SignUp() {
                             );
 
                             target.value = sanitized;
-                            setUserData((x) => ({ ...x, phone: sanitized }));
+                            setData("phone", sanitized);
                         }}
                     />
                     <button>인증 번호 받기</button>
                 </div>
                 <div>
                     <input
-                        type="text"
-                        name="verify"
-                        maxLength={6}
-                        placeholder="인증번호"
+                        {...getAttributes("verify")}
                         onChange={({ target }) => {
-                            setUserData((x) => ({
-                                ...x,
-                                verify: target.value,
-                            }));
+                            setData("verify", target.value);
                         }}
                     />
-                    <button>확인</button>
+                    <button
+                        onClick={() => {
+                            setData("verified", true);
+                        }}
+                    >
+                        확인
+                    </button>
                 </div>
                 <section className="terms">
                     <h2>약관 동의</h2>
@@ -196,10 +240,7 @@ export default function SignUp() {
                                     name="expire"
                                     id={`expire-${id}`}
                                     onChange={() => {
-                                        setUserData((x) => ({
-                                            ...x,
-                                            expirationDate: name,
-                                        }));
+                                        setExpirationDate(name);
                                     }}
                                 />
                                 <label htmlFor={`expire-${id}`}>{name}</label>

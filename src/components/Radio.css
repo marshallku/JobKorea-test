@@ -1,0 +1,43 @@
+.radio {
+    display: inline-flex;
+    align-items: center;
+}
+
+.radio:not(:last-of-type) {
+    margin-right: 0.75rem;
+}
+
+.radio__input {
+    position: absolute;
+    opacity: 0;
+}
+
+.radio__input:focus-visible ~ .radio__icon {
+    outline: 2px solid var(--multipurpose-2);
+}
+
+.radio__icon {
+    display: inline-flex;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 8px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-elevated);
+    border-radius: 50%;
+}
+
+.radio__circle {
+    width: 0.8rem;
+    height: 0.8rem;
+    background-color: var(--main);
+    opacity: 0;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.radio__input:checked ~ .radio__icon > .radio__circle {
+    opacity: 1;
+    transform: scale(1);
+}

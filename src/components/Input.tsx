@@ -26,7 +26,7 @@ export default function Input({
     );
 
     return (
-        <div className={fcls("input", touched && "input--touched")}>
+        <div className="input">
             <input
                 type={type || "text"}
                 minLength={minLength}
@@ -36,7 +36,8 @@ export default function Input({
                 placeholder={placeholder}
                 className={fcls(
                     "input__field",
-                    !!button && "input__field--fixed"
+                    !!button && "input__field--fixed",
+                    touched && "input__field--touched"
                 )}
                 onBlur={() => {
                     if (touched) {

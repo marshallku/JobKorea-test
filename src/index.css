@@ -1,8 +1,10 @@
 :root {
     --main: #f60;
-    --multipurpose: #efefef;
+    --multipurpose: #e0e0e0;
     --multipurpose-2: #222;
     --error: #e53935;
+    --black-text: #000;
+    --white-text: #f1f1f1;
 }
 
 a,
@@ -28,6 +30,7 @@ h4,
 h5,
 h6,
 header,
+hr,
 html,
 i,
 iframe,
@@ -141,4 +144,12 @@ body,
 
 html {
     font-family: "Noto Sans KR", sans-serif;
+}
+
+hr {
+    margin: 1rem 0;
+}
+
+hr.line {
+    border-bottom: 1px solid var(--multipurpose);
 }

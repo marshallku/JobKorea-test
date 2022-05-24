@@ -1,4 +1,40 @@
 .sign-form {
     display: flex;
     flex-direction: column;
+    padding: 18px;
+}
+
+.sign-form__section {
+    margin-bottom: 1rem;
+}
+
+.sign-form__section--column {
+    display: flex;
+    flex-direction: column;
+}
+
+.sign-form__title {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.terms-item {
+    line-height: 1.5;
+}
+
+.terms-item:not(:first-child) {
+    margin-top: 0.75rem;
+}
+
+.sign-form__submit {
+    margin-top: 1rem;
+    padding: 1rem;
+    line-height: 2;
+    background-color: var(--main);
+    color: var(--white-text);
+}
+
+.sign-form__submit:disabled {
+    background-color: var(--multipurpose);
+    color: var(--black-text);
 }

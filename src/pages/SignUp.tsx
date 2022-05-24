@@ -195,8 +195,8 @@ export default function SignUp() {
                         },
                     }}
                 />
-                <section className="terms">
-                    <h2>약관 동의</h2>
+                <section className="sign-form__section sign-form__section--column">
+                    <h2 className="sign-form__title">약관 동의</h2>
                     <CheckBox
                         className="terms-item"
                         type="checkbox"
@@ -212,9 +212,11 @@ export default function SignUp() {
                         }}
                         label="필수동의 항목 및 개인정보수집 및 이용 동의(선택), 광고성 정보 수신 동의(선택)에 전체 동의합니다."
                     />
+                    <hr className="line" />
                     {terms.map(({ essential, title, checked }, index) => (
                         <CheckBox
                             key={`${title}-${index}`}
+                            className="terms-item"
                             name={`agree-${index}`}
                             checked={checked}
                             onChange={({ target }) => {
@@ -247,15 +249,19 @@ export default function SignUp() {
                         </CheckBox>
                     ))}
                 </section>
-                <section>
-                    <h2>개인정보 유효기간</h2>
+                <section className="sign-form__section">
+                    <h2 className="sign-form__title">개인정보 유효기간</h2>
                     <Radio
                         items={expirationDates}
                         groupName="expire"
                         stateSetter={setExpirationDate}
                     />
                 </section>
-                <button disabled={!submittable} type="submit">
+                <button
+                    disabled={!submittable}
+                    type="submit"
+                    className="sign-form__submit"
+                >
                     가입하기
                 </button>
             </form>

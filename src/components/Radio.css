@@ -1,6 +1,7 @@
 .radio {
     display: inline-flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .radio:not(:last-of-type) {

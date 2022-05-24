@@ -125,16 +125,31 @@ export default function SignUp() {
                     event.preventDefault();
 
                     const { id, password, name, email, phone } = data;
-
-                    console.log({
+                    const formData = new FormData();
+                    const dataToSubmit = {
                         id: id.value,
                         password: password.value,
                         name: name.value,
                         email: email.value,
                         phone: phone.value,
-                        terms,
                         expirationDate,
+                    };
+
+                    Object.entries(dataToSubmit).forEach(([key, value]) => {
+                        formData.append(key, value.toString());
                     });
+
+                    Object.entries(terms).forEach(([key, value], index) => {
+                        formData.append(
+                            `agree-${key}-${index}`,
+                            value.checked ? "true" : "false"
+                        );
+                    });
+
+                    console.log(formData);
+
+                    // Log object for readability
+                    console.log(dataToSubmit, terms);
                 }}
             >
                 {/*

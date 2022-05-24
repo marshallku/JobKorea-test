@@ -1,4 +1,6 @@
 :root {
+    --background: #fff;
+    --background-elevated: #f1f1f1;
     --main: #f60;
     --multipurpose: #e0e0e0;
     --multipurpose-2: #222;

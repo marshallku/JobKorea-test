@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import CheckBox from "../components/CheckBox";
 import Input from "../components/Input";
 import useForm from "../hooks/useForm";
 import fcls from "../utils/fcls";
@@ -195,46 +196,41 @@ export default function SignUp() {
                 />
                 <section className="terms">
                     <h2>약관 동의</h2>
-                    <label className="terms-item">
-                        <input
-                            type="checkbox"
-                            name="agree-all"
-                            checked={terms.every((x) => x.checked)}
+                    <CheckBox
+                        className="terms-item"
+                        type="checkbox"
+                        name="agree-all"
+                        checked={terms.every((x) => x.checked)}
+                        onChange={({ target }) => {
+                            setTerms((x) =>
+                                x.map((item) => ({
+                                    ...item,
+                                    checked: target.checked,
+                                }))
+                            );
+                        }}
+                        label="필수동의 항목 및 개인정보수집 및 이용 동의(선택), 광고성 정보 수신 동의(선택)에 전체 동의합니다."
+                    />
+                    {terms.map(({ essential, title, checked }, index) => (
+                        <CheckBox
+                            key={`${title}-${index}`}
+                            name={`agree-${index}`}
+                            checked={checked}
                             onChange={({ target }) => {
                                 setTerms((x) =>
-                                    x.map((item) => ({
-                                        ...item,
-                                        checked: target.checked,
-                                    }))
+                                    x.map((item, i) => {
+                                        if (i !== index) {
+                                            return item;
+                                        }
+
+                                        return {
+                                            ...item,
+                                            checked: target.checked,
+                                        };
+                                    })
                                 );
                             }}
-                        />
-                        <span>
-                            필수동의 항목 및 개인정보수집 및 이용 동의(선택),
-                            광고성 정보 수신 동의(선택)에 전체 동의합니다.
-                        </span>
-                    </label>
-                    {terms.map(({ essential, title, checked }, index) => (
-                        <label key={`${title}-${index}`}>
-                            <input
-                                type="checkbox"
-                                name="agree-all"
-                                checked={checked}
-                                onChange={({ target }) => {
-                                    setTerms((x) =>
-                                        x.map((item, i) => {
-                                            if (i !== index) {
-                                                return item;
-                                            }
-
-                                            return {
-                                                ...item,
-                                                checked: target.checked,
-                                            };
-                                        })
-                                    );
-                                }}
-                            />
+                        >
                             <span>
                                 <span
                                     className={fcls(
@@ -247,7 +243,7 @@ export default function SignUp() {
                                 </span>
                                 <span>{title}</span>
                             </span>
-                        </label>
+                        </CheckBox>
                     ))}
                 </section>
                 <section>

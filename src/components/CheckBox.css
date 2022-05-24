@@ -1,0 +1,36 @@
+.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox__input {
+    position: absolute;
+    opacity: 0;
+}
+
+.checkbox__input:focus-visible ~ .checkbox__icon {
+    outline: 2px solid var(--multipurpose-2);
+}
+
+.checkbox__icon {
+    display: inline-flex;
+    margin-right: 8px;
+    padding: 0.2rem;
+    background-color: var(--background-elevated);
+    flex-shrink: 0;
+    border-radius: 4px;
+}
+
+.checkbox__icon > svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: var(--main);
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.checkbox__input:checked ~ .checkbox__icon > svg {
+    opacity: 1;
+    transform: scale(1);
+}

@@ -1,10 +1,14 @@
 .input {
     position: relative;
+    display: flex;
     padding-bottom: 1.5rem;
+    align-items: center;
+    gap: 0.8rem;
     line-height: 1.5;
 }
 
 .input__field {
+    width: 100%;
     padding: 1rem 0.5rem 0.5rem;
     outline: 0;
     border-bottom: 1px solid var(--multipurpose);
@@ -17,6 +21,10 @@
 
 .input__field::placeholder {
     color: transparent;
+}
+
+.input__field--fixed {
+    width: calc((100% - 0.8rem) / 3 * 2);
 }
 
 .input__label {
@@ -34,6 +42,18 @@
     + .input__label {
     font-size: 0.7rem;
     transform: translate3d(0, -0.8rem, 0);
+}
+
+.input__button {
+    height: 3rem;
+    flex: 1 1 0;
+    color: var(--multipurpose);
+    border: 1px solid var(--multipurpose);
+}
+
+.input__field:valid ~ .input__button {
+    color: var(--multipurpose-2);
+    border-color: var(--multipurpose-2);
 }
 
 .input__error {

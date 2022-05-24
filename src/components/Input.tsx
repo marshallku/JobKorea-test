@@ -25,8 +25,10 @@ export default function Input({
                 required={required}
                 pattern={pattern}
                 placeholder={placeholder}
-                value={value}
-                className="input__field"
+                className={fcls(
+                    "input__field",
+                    !!button && "input__field--fixed"
+                )}
                 onBlur={() => {
                     if (touched) {
                         return;

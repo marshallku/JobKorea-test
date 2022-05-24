@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import CheckBox from "../components/CheckBox";
 import Input from "../components/Input";
+import Radio from "../components/Radio";
 import useForm from "../hooks/useForm";
 import fcls from "../utils/fcls";
 import "./SignUp.css";
@@ -248,21 +249,11 @@ export default function SignUp() {
                 </section>
                 <section>
                     <h2>개인정보 유효기간</h2>
-                    <div>
-                        {expirationDates.map(({ id, name }) => (
-                            <span key={id}>
-                                <input
-                                    type="radio"
-                                    name="expire"
-                                    id={`expire-${id}`}
-                                    onChange={() => {
-                                        setExpirationDate(name);
-                                    }}
-                                />
-                                <label htmlFor={`expire-${id}`}>{name}</label>
-                            </span>
-                        ))}
-                    </div>
+                    <Radio
+                        items={expirationDates}
+                        groupName="expire"
+                        stateSetter={setExpirationDate}
+                    />
                 </section>
                 <button disabled={!submittable} type="submit">
                     가입하기

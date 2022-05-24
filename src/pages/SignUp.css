@@ -26,6 +26,26 @@
     margin-top: 0.75rem;
 }
 
+.terms-item__label {
+    display: flex;
+    width: 100%;
+}
+
+.terms-item__type--essential {
+    color: var(--main);
+}
+
+.terms-item__link {
+    display: inline-flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.terms-item__link > svg {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
 .sign-form__submit {
     margin-top: 1rem;
     padding: 1rem;

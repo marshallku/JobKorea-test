@@ -76,21 +76,25 @@ export default function SignUp() {
         {
             essential: true,
             title: "서비스 이용약관 동의",
+            link: "https://example.com/",
             checked: false,
         },
         {
             essential: true,
             title: "개인정보수집 및 이용 동의",
+            link: "https://example.com/",
             checked: false,
         },
         {
             essential: false,
             title: "개인정보수집 및 이용 동의",
+            link: "https://example.com/",
             checked: false,
         },
         {
             essential: false,
             title: "광고성 정보 이메일/SMS 수신 동의",
+            link: "https://example.com/",
             checked: false,
         },
     ]);
@@ -213,7 +217,7 @@ export default function SignUp() {
                         label="필수동의 항목 및 개인정보수집 및 이용 동의(선택), 광고성 정보 수신 동의(선택)에 전체 동의합니다."
                     />
                     <hr className="line" />
-                    {terms.map(({ essential, title, checked }, index) => (
+                    {terms.map(({ essential, title, link, checked }, index) => (
                         <CheckBox
                             key={`${title}-${index}`}
                             className="terms-item"
@@ -234,7 +238,7 @@ export default function SignUp() {
                                 );
                             }}
                         >
-                            <span>
+                            <div className="terms-item__label">
                                 <span
                                     className={fcls(
                                         "terms-item__type",
@@ -245,7 +249,22 @@ export default function SignUp() {
                                     [{essential ? "필수" : "선택"}]
                                 </span>
                                 <span>{title}</span>
-                            </span>
+                                {link && (
+                                    <a
+                                        href={link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="terms-item__link"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 48 48"
+                                        >
+                                            <path d="M18.75 36 16.6 33.85 26.5 23.95 16.6 14.05 18.75 11.9 30.8 23.95Z" />
+                                        </svg>
+                                    </a>
+                                )}
+                            </div>
                         </CheckBox>
                     ))}
                 </section>

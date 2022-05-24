@@ -11,6 +11,7 @@ export default function Input({
     maxLength,
     errorText,
     onChange,
+    button,
 }: InputProps) {
     const [touched, setTouched] = useState(false);
     const [value, setValue] = useState("");
@@ -39,6 +40,11 @@ export default function Input({
                 }}
             />
             <label className="input__label">{placeholder}</label>
+            {!!button && (
+                <button className="input__button" onClick={button.onClick}>
+                    {button.text}
+                </button>
+            )}
             <div className="input__error">
                 {value === "" ? `${placeholder}를 입력해주세요` : errorText}
             </div>

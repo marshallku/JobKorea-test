@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import endsWithStopConsonant from "../utils/endsWithStopConsonant";
 import fcls from "../utils/fcls";
 import "./Input.css";
 
@@ -15,6 +16,14 @@ export default function Input({
 }: InputProps) {
     const [touched, setTouched] = useState(false);
     const [value, setValue] = useState("");
+    const formattedPlaceholder = useMemo(
+        () => (placeholder ? placeholder.replace(/\(.+\)/, "") : ""),
+        [placeholder]
+    );
+    const postPositionOfPlaceholder = useMemo(
+        () => (endsWithStopConsonant(formattedPlaceholder) ? "을" : "를"),
+        [placeholder]
+    );
 
     return (
         <div className={fcls("input", touched && "input--touched")}>
@@ -52,7 +61,9 @@ export default function Input({
                 </button>
             )}
             <div className="input__error">
-                {value === "" ? `${placeholder}를 입력해주세요` : errorText}
+                {value === "" && placeholder
+                    ? `${formattedPlaceholder}${postPositionOfPlaceholder} 입력해주세요`
+                    : errorText}
             </div>
         </div>
     );

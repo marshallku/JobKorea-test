@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import Input from "../components/Input";
 import useForm from "../hooks/useForm";
 import fcls from "../utils/fcls";
 import "./SignUp.css";
@@ -45,6 +46,7 @@ export default function SignUp() {
             value: "",
             minLength: 10,
             maxLength: 11,
+            required: true,
             pattern: /^[0-9]{10,11}$/,
         },
         verify: {
@@ -52,6 +54,7 @@ export default function SignUp() {
             type: "number",
             value: "",
             required: true,
+            pattern: /^[0-9]{6}$/,
             minLength: 6,
             maxLength: 6,
         },
@@ -133,61 +136,63 @@ export default function SignUp() {
                  * and there's no default value,
                  * I didn't bind values to input elements.
                  */}
-                <input
+                <Input
                     {...getAttributes("id")}
                     onChange={({ target }) => {
                         setData("id", target.value);
                     }}
+                    errorText="6~16자의 영소문자, 숫자만 사용 가능합니다."
                 />
-                <input
+                <Input
                     {...getAttributes("password")}
                     onChange={({ target }) => {
                         setData("password", target.value);
                     }}
+                    errorText="8~16자의 영문, 숫자, 특수문자만 사용 가능합니다."
                 />
-                <input
+                <Input
                     {...getAttributes("name")}
                     onChange={({ target }) => {
                         setData("name", target.value);
                     }}
+                    errorText="2~12자의 한글, 영문만 사용 가능합니다."
                 />
-                <input
+                <Input
                     {...getAttributes("email")}
                     onChange={({ target }) => {
                         setData("email", target.value);
                     }}
+                    errorText="이메일을 올바르게 입력해주세요."
                 />
-                <div>
-                    <input
-                        {...getAttributes("phone")}
-                        onChange={({ target }) => {
-                            const sanitized = target.value.replace(
-                                /[^\d.]/g,
-                                ""
-                            );
+                <Input
+                    {...getAttributes("phone")}
+                    onChange={({ target }) => {
+                        const sanitized = target.value.replace(/[^\d.]/g, "");
 
-                            target.value = sanitized;
-                            setData("phone", sanitized);
-                        }}
-                    />
-                    <button type="button">인증 번호 받기</button>
-                </div>
-                <div>
-                    <input
-                        {...getAttributes("verify")}
-                        onChange={({ target }) => {
-                            setData("verify", target.value);
-                        }}
-                    />
-                    <button
-                        type="button"
-                        onClick={() => {
+                        target.value = sanitized;
+                        setData("phone", sanitized);
+                    }}
+                    errorText="휴대폰 번호를 올바르게 입력해주세요."
+                    button={{
+                        text: "인증 번호 받기",
+                    }}
+                />
+                <Input
+                    {...getAttributes("verify")}
+                    onChange={({ target }) => {
+                        const sanitized = target.value.replace(/[^\d.]/g, "");
+
+                        target.value = sanitized;
+                        setData("verify", sanitized);
+                    }}
+                    errorText="휴대폰 번호를 올바르게 입력해주세요."
+                    button={{
+                        text: "확인",
+                        onClick: () => {
                             setData("verified", true);
-                        }}
-                    >
-                        확인
-                    </button>
-                </div>
+                        },
+                    }}
+                />
                 <section className="terms">
                     <h2>약관 동의</h2>
                     <label className="terms-item">

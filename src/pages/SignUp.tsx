@@ -52,7 +52,7 @@ export default function SignUp() {
             pattern: /^[0-9]{10,11}$/,
         },
         verify: {
-            name: "인증번호",
+            name: "인증 번호",
             type: "number",
             value: "",
             required: true,
@@ -187,7 +187,7 @@ export default function SignUp() {
                         target.value = sanitized;
                         setData("verify", sanitized);
                     }}
-                    errorText="휴대폰 번호를 올바르게 입력해주세요."
+                    errorText="인증 번호를 올바르게 입력해주세요."
                     button={{
                         text: "확인",
                         onClick: () => {

@@ -41,7 +41,11 @@ export default function Input({
             />
             <label className="input__label">{placeholder}</label>
             {!!button && (
-                <button className="input__button" onClick={button.onClick}>
+                <button
+                    type="button"
+                    className="input__button"
+                    onClick={button.onClick}
+                >
                     {button.text}
                 </button>
             )}

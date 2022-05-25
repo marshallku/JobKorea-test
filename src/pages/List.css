@@ -1,0 +1,82 @@
+.list__options {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background-elevated);
+    border: 2px solid var(--multipurpose);
+    border-left: 0;
+    border-right: 0;
+}
+
+.list__drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: clamp(0px, 90%, 250px);
+    height: 100%;
+    padding: 10px;
+    background-color: var(--background);
+    transform: translate3d(100%, 0, 0);
+    pointer-events: none;
+    transition: transform 0.2s ease-in-out;
+    z-index: 120;
+}
+
+.list__drawer--revealed {
+    transform: translate3d(0, 0, 0);
+    pointer-events: all;
+}
+
+.list__drawer-closer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 100;
+}
+
+.list__drawer-closer--revealed {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.drawer > :not(:last-child) {
+    margin-bottom: 12px;
+}
+
+.drawer__title {
+    font-size: 1.5rem;
+}
+
+.drawer__buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.drawer__button {
+    padding: 0.5rem 0;
+    flex: 1 1 0;
+    border: 1px solid var(--multipurpose);
+    border-radius: 0.25rem;
+}
+
+.drawer__button--highlight {
+    border-color: var(--main);
+}
+
+.drawer__center {
+    text-align: center;
+}
+
+.drawer__submit {
+    width: 50%;
+    padding: 1rem 0;
+    background-color: var(--main);
+    border-radius: 0.25rem;
+}

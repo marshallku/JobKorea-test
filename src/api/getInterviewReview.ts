@@ -16,5 +16,5 @@ export default function getInterviewReview({
         orderBy,
     });
 
-    return instance.get(`/interview-review${query}`);
+    return instance.get(`interview-review${query}`);
 }

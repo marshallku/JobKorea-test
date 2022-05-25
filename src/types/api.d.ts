@@ -12,6 +12,7 @@ interface ApiSuccessResponse {
 }
 
 interface InterviewReviewItem {
+    id: number;
     company: string;
     userName: string;
     date: `${Date}`;

@@ -20,7 +20,8 @@ const handlers = [
                 success: true,
                 data: {
                     count: 3512,
-                    items: [...Array(20)].map(() => ({
+                    items: [...Array(20)].map((_, i) => ({
+                        id: i,
                         company: "Company Name",
                         userName: "John Doe",
                         date: new Date(

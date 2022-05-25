@@ -8,10 +8,10 @@ const handlers = [
             const passed = req.url.searchParams.get("passed");
 
             if (typeof passed === "string") {
-                return +passed === 1;
+                return +passed === 1 ? 1 : 0;
             }
 
-            return Math.random() < 0.5;
+            return Math.random() < 0.5 ? 1 : 0;
         };
 
         return res(

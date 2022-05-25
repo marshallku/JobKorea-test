@@ -1,0 +1,3 @@
+interface InterviewReviewItemProps {
+    data: InterviewReviewItem;
+}

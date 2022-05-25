@@ -1,3 +1,5 @@
+import "./InterviewReviewItem.css";
+
 export default function InterviewReviewItem({
     data,
 }: InterviewReviewItemProps) {
@@ -30,17 +32,17 @@ export default function InterviewReviewItem({
             </header>
             <div className="interview-review__infos">
                 <div className="interview-review__info">
-                    <div className="interview-review__box"></div>
-                    <div className="interview-review__highlight">
+                    <div className="interview-review__box">합격여부</div>
+                    <div className="highlight">
                         {passed === 1 ? "합격" : "불합격"}
                     </div>
                 </div>
                 <div className="interview-review__info">
-                    <div className="interview-review__box"></div>
+                    <div className="interview-review__box">담당업무</div>
                     <div>{responsible}</div>
                 </div>
                 <div className="interview-review__info">
-                    <div className="interview-review__box"></div>
+                    <div className="interview-review__box">면접연도</div>
                     <div>{new Date(interviewedAt).getFullYear()}</div>
                 </div>
             </div>

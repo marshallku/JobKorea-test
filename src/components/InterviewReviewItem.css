@@ -51,8 +51,9 @@
     margin: 10px 0;
     padding: 10px;
     gap: 10px;
-    border-top: 2px solid var(--multipurpose);
-    border-bottom: 2px solid var(--multipurpose);
+    border: 2px solid var(--multipurpose);
+    border-left: 0;
+    border-right: 0;
     background-color: var(--background-elevated);
     font-size: 0.8rem;
 }

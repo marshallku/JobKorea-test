@@ -32,7 +32,7 @@ const handlers = [
                         comments: Math.floor(Math.random() * 10),
                         passed: getPassed(),
                         responsible: "Developer",
-                        interviewAt: new Date(),
+                        interviewedAt: new Date(),
                         description:
                             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas venenatis elementum nunc nec pretium. Maecenas quam purus, venenatis non mi vitae, euismod ultrices tellus. Morbi nec est eget turpis gravida rhoncus. Etiam vitae facilisis nisi, eget bibendum ipsum. Donec rutrum rhoncus nunc ac lacinia. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus risus lacus, posuere et aliquam in, vulputate tincidunt elit. Morbi eu dignissim quam, maximus eleifend erat.",
                     })),

@@ -6,7 +6,7 @@ export default function getInterviewReview({
     jobType,
     passed,
     orderBy = "date",
-}: InterviewReviewProps) {
+}: InterviewReviewProps): Promise<InterviewReviewResponse> {
     const [jobType1, jobType2] = jobType || [];
     const query = composeQuery({
         page,

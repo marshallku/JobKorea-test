@@ -14,12 +14,12 @@ interface ApiSuccessResponse {
 interface InterviewReviewItem {
     company: string;
     userName: string;
-    date: Date;
+    date: `${Date}`;
     view: number;
     comments: number;
-    passed: string;
+    passed: 0 | 1;
     responsible: string;
-    interviewAt: Date;
+    interviewedAt: `${Date}`;
     description: string;
 }
 

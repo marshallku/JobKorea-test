@@ -155,3 +155,7 @@ hr {
 hr.line {
     border-bottom: 1px solid var(--multipurpose);
 }
+
+.highlight {
+    color: var(--main);
+}

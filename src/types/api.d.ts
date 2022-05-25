@@ -3,7 +3,7 @@ type jobType = number | undefined;
 interface InterviewReviewProps {
     page?: number;
     jobType?: [jobType, jobType];
-    passed?: boolean;
+    passed?: 0 | 1;
     orderBy?: "date" | "view";
 }
 

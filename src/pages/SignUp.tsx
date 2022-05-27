@@ -53,7 +53,7 @@ export default function SignUp() {
         },
         verify: {
             name: "인증 번호",
-            type: "number",
+            type: "text",
             value: "",
             required: true,
             pattern: /^[0-9]{6}$/,

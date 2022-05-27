@@ -4,7 +4,7 @@
 
 ## Sign up page
 
-![Sign Up Page](https://blog.kakaocdn.net/dn/da5FaQ/btrC878jtoU/lJZebjNqYcKOS1ka6QELpK/img.png)
+![Sign Up Page](https://blog.kakaocdn.net/dn/DmZCv/btrDjvA4XLv/U3spdbOWNc6SXjrclFAgs0/img.png)
 
 -   UI Components
 -   Form validation

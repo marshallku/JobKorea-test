@@ -45,10 +45,11 @@ export default function useForm(init: { [key: string]: FormItem }) {
     };
 
     const getAttributes = (attribute: keyof typeof init) => {
-        const { name, required, pattern, minLength, maxLength } =
+        const { type, name, required, pattern, minLength, maxLength } =
             data[attribute];
 
         return {
+            type,
             placeholder: name,
             required,
             pattern: pattern ? `${pattern}`.slice(1, -1) : undefined,

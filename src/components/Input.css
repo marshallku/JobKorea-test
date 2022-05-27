@@ -44,6 +44,22 @@
     transform: translate3d(0, -0.8rem, 0);
 }
 
+.input__visibility {
+    position: absolute;
+    top: 1rem;
+    right: 0.5rem;
+    display: inline-flex;
+    width: 1.5rem;
+    height: 1.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.input__visibility > svg {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
 .input__button {
     height: 3rem;
     flex: 1 1 0;
